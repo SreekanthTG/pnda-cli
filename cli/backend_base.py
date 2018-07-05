@@ -710,3 +710,9 @@ class BaseBackend(object):
         if data_volume_count == 0:
             CONSOLE.error('Datanode volume count should not be zero')
             sys.exit(1)
+
+    def _keyname_from_keyfile(self, keyfile):
+        return keyfile[:-4]
+
+    def _keyfile_from_keyname(self, keyname):
+        return '%s.pem' % keyname
