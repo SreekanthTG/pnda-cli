@@ -454,6 +454,9 @@ class BaseBackend(object):
                     'bastion':self._node_config['bastion-instance'],
                     'saltmaster':self._node_config['salt-master-instance']})
 
+        if 'mirror-instance' in self._node_config and not self._pnda_env['mirrors']['EXTERNAL_MIRROR']:
+            self._pnda_env['mirrors']['PNDA_MIRROR'] = instance_map[self._cluster + '-' + self._node_config['mirror-instance']]['private_ip_address']
+
         instance_map = self.get_instance_map()
         bastion_ip = self._get_bastion_ip()
 
@@ -691,14 +694,15 @@ class BaseBackend(object):
             sys.exit(1)
 
         try:
-            mirror = self._pnda_env['mirrors']['PNDA_MIRROR']
-            response = requests.head(mirror)
-            # expect 200 (open mirror) 403 (no listing allowed)
-            # or any redirect (in case of proxy/redirect)
-            if response.status_code not in [200, 403, 301, 302, 303, 307, 308]:
-                raise_error("PNDA mirror configured and present "
-                            "but responded with unexpected status code (%s). " % response.status_code)
-            CONSOLE.info('PNDA mirror...... OK')
+            if self._pnda_env['mirrors']['EXTERNAL_MIRROR']:
+                mirror = self._pnda_env['mirrors']['PNDA_MIRROR']
+                response = requests.head(mirror)
+                # expect 200 (open mirror) 403 (no listing allowed)
+                # or any redirect (in case of proxy/redirect)
+                if response.status_code not in [200, 403, 301, 302, 303, 307, 308]:
+                    raise_error("PNDA mirror configured and present "
+                                "but responded with unexpected status code (%s). " % response.status_code)
+                CONSOLE.info('PNDA mirror...... OK')
         except KeyError:
             raise_error('PNDA mirror was not defined in pnda_env.yaml')
         except:

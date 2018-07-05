@@ -1,4 +1,5 @@
 {
+  "mirror-instance":"pnda-mirror",
   "salt-master-instance":"saltmaster",
   "bastion-instance":"gateway",
   "console-instance":"hadoop-edge"

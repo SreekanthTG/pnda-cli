@@ -13,3 +13,4 @@ pnda_env*.sh
 .DS_Store
 cli/logs/*cloud-formation-template*.json
 cli/logs/*cloud-formation-parameters*.json
+tf-*/

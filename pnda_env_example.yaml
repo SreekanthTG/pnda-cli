@@ -195,7 +195,10 @@ ntp:
 mirrors:
   # Mirror of resources required for provisioning PNDA, see PNDA guide for instructions on how to set this up
   PNDA_MIRROR: http://x.x.x.x
-
+  # Whether or not to use the PNDA_MIRROR setting
+  #  - True: Use PNDA_MIRROR
+  #  - False: Look for mirror instance created as part of stack, where the mirror instance is defined in the config.json file for that flavor
+  EXTERNAL_MIRROR: True
 hadoop:
   # Hadoop distribution to install
   # Valid values are:
