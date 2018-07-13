@@ -121,6 +121,10 @@ terraform_parameters:
   # Image to use for other instances
   VS_TEMPLATE_BASE: centos_base
 
+  # Root user and password for the base images
+  TF_ROOT_USER: root
+  TF_ROOT_PASSWORD: root
+
 platform_salt:
   # Use either PLATFORM_GIT_REPO_URI + PLATFORM_GIT_BRANCH or PLATFORM_SALT_LOCAL
 

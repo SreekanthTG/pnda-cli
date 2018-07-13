@@ -69,6 +69,38 @@ resource "vsphere_virtual_machine" "pnda_mirror" {
       network_interface {}
     }*/
   }
+  provisioner "file" {
+    source      = "./terraform/scripts"
+    destination = "/tmp"
+    connection {
+      type     = "ssh"
+      user     = "${var.root_user}"
+      password = "${var.root_password}"
+    }
+  }
+  provisioner "remote-exec" {
+    inline = "ls /tmp",
+    connection {
+      type     = "ssh"
+      user     = "${var.root_user}"
+      password = "${var.root_password}"
+    }
+  }
+  provisioner "remote-exec" {
+    inline = [
+      "chmod +x /tmp/scripts/*.sh",
+      "/tmp/scripts/ssh_conf.sh",
+      "/tmp/scripts/authorized_keys.sh",
+      "rm -rf /tmp/scripts",
+      "passwd -d root",
+      "userdel -r centos"
+    ],
+    connection {
+      type     = "ssh"
+      user     = "${var.root_user}"
+      password = "${var.root_password}"
+    }
+  }
 }
 
 // Datanode Node
@@ -123,6 +155,38 @@ resource "vsphere_virtual_machine" "datanode" {
       }
       network_interface {}
     }*/
+  }
+  provisioner "file" {
+    source      = "./terraform/scripts"
+    destination = "/tmp"
+    connection {
+      type     = "ssh"
+      user     = "${var.root_user}"
+      password = "${var.root_password}"
+    }
+  }
+  provisioner "remote-exec" {
+    inline = "ls /tmp",
+    connection {
+      type     = "ssh"
+      user     = "${var.root_user}"
+      password = "${var.root_password}"
+    }
+  }
+  provisioner "remote-exec" {
+    inline = [
+      "chmod +x /tmp/scripts/*.sh",
+      "/tmp/scripts/ssh_conf.sh",
+      "/tmp/scripts/authorized_keys.sh",
+      "rm -rf /tmp/scripts",
+      "passwd -d root",
+      "userdel -r centos"
+    ],
+    connection {
+      type     = "ssh"
+      user     = "${var.root_user}"
+      password = "${var.root_password}"
+    }
   }
 }
 
@@ -179,6 +243,38 @@ resource "vsphere_virtual_machine" "kafka" {
       network_interface {}
     }*/
   }
+  provisioner "file" {
+    source      = "./terraform/scripts"
+    destination = "/tmp"
+    connection {
+      type     = "ssh"
+      user     = "${var.root_user}"
+      password = "${var.root_password}"
+    }
+  }
+  provisioner "remote-exec" {
+    inline = "ls /tmp",
+    connection {
+      type     = "ssh"
+      user     = "${var.root_user}"
+      password = "${var.root_password}"
+    }
+  }
+  provisioner "remote-exec" {
+    inline = [
+      "chmod +x /tmp/scripts/*.sh",
+      "/tmp/scripts/ssh_conf.sh",
+      "/tmp/scripts/authorized_keys.sh",
+      "rm -rf /tmp/scripts",
+      "passwd -d root",
+      "userdel -r centos"
+    ],
+    connection {
+      type     = "ssh"
+      user     = "${var.root_user}"
+      password = "${var.root_password}"
+    }
+  }
 }
 
 // Zookeeper Node
@@ -226,6 +322,38 @@ resource "vsphere_virtual_machine" "zookeeper" {
       }
       network_interface {}
     }*/
+  }
+  provisioner "file" {
+    source      = "./terraform/scripts"
+    destination = "/tmp"
+    connection {
+      type     = "ssh"
+      user     = "${var.root_user}"
+      password = "${var.root_password}"
+    }
+  }
+  provisioner "remote-exec" {
+    inline = "ls /tmp",
+    connection {
+      type     = "ssh"
+      user     = "${var.root_user}"
+      password = "${var.root_password}"
+    }
+  }
+  provisioner "remote-exec" {
+    inline = [
+      "chmod +x /tmp/scripts/*.sh",
+      "/tmp/scripts/ssh_conf.sh",
+      "/tmp/scripts/authorized_keys.sh",
+      "rm -rf /tmp/scripts",
+      "passwd -d root",
+      "userdel -r centos"
+    ],
+    connection {
+      type     = "ssh"
+      user     = "${var.root_user}"
+      password = "${var.root_password}"
+    }
   }
 }
 
@@ -275,6 +403,38 @@ resource "vsphere_virtual_machine" "managers" {
       network_interface {}
     }*/
   }
+  provisioner "file" {
+    source      = "./terraform/scripts"
+    destination = "/tmp"
+    connection {
+      type     = "ssh"
+      user     = "${var.root_user}"
+      password = "${var.root_password}"
+    }
+  }
+  provisioner "remote-exec" {
+    inline = "ls /tmp",
+    connection {
+      type     = "ssh"
+      user     = "${var.root_user}"
+      password = "${var.root_password}"
+    }
+  }
+  provisioner "remote-exec" {
+    inline = [
+      "chmod +x /tmp/scripts/*.sh",
+      "/tmp/scripts/ssh_conf.sh",
+      "/tmp/scripts/authorized_keys.sh",
+      "rm -rf /tmp/scripts",
+      "passwd -d root",
+      "userdel -r centos"
+    ],
+    connection {
+      type     = "ssh"
+      user     = "${var.root_user}"
+      password = "${var.root_password}"
+    }
+  }
 }
 
 // Hadoop Edge Node
@@ -322,6 +482,38 @@ resource "vsphere_virtual_machine" "edge" {
       }
       network_interface {}
     }*/
+  }
+  provisioner "file" {
+    source      = "./terraform/scripts"
+    destination = "/tmp"
+    connection {
+      type     = "ssh"
+      user     = "${var.root_user}"
+      password = "${var.root_password}"
+    }
+  }
+  provisioner "remote-exec" {
+    inline = "ls /tmp",
+    connection {
+      type     = "ssh"
+      user     = "${var.root_user}"
+      password = "${var.root_password}"
+    }
+  }
+  provisioner "remote-exec" {
+    inline = [
+      "chmod +x /tmp/scripts/*.sh",
+      "/tmp/scripts/ssh_conf.sh",
+      "/tmp/scripts/authorized_keys.sh",
+      "rm -rf /tmp/scripts",
+      "passwd -d root",
+      "userdel -r centos"
+    ],
+    connection {
+      type     = "ssh"
+      user     = "${var.root_user}"
+      password = "${var.root_password}"
+    }
   }
 }
 
@@ -371,6 +563,38 @@ resource "vsphere_virtual_machine" "tools" {
       network_interface {}
     }*/
   }
+  provisioner "file" {
+    source      = "./terraform/scripts"
+    destination = "/tmp"
+    connection {
+      type     = "ssh"
+      user     = "${var.root_user}"
+      password = "${var.root_password}"
+    }
+  }
+  provisioner "remote-exec" {
+    inline = "ls /tmp",
+    connection {
+      type     = "ssh"
+      user     = "${var.root_user}"
+      password = "${var.root_password}"
+    }
+  }
+  provisioner "remote-exec" {
+    inline = [
+      "chmod +x /tmp/scripts/*.sh",
+      "/tmp/scripts/ssh_conf.sh",
+      "/tmp/scripts/authorized_keys.sh",
+      "rm -rf /tmp/scripts",
+      "passwd -d root",
+      "userdel -r centos"
+    ],
+    connection {
+      type     = "ssh"
+      user     = "${var.root_user}"
+      password = "${var.root_password}"
+    }
+  }
 }
 
 // OpenTSDB Node
@@ -418,5 +642,37 @@ resource "vsphere_virtual_machine" "opentsdb" {
       }
       network_interface {}
     }*/
+  }
+  provisioner "file" {
+    source      = "./terraform/scripts"
+    destination = "/tmp"
+    connection {
+      type     = "ssh"
+      user     = "${var.root_user}"
+      password = "${var.root_password}"
+    }
+  }
+  provisioner "remote-exec" {
+    inline = "ls /tmp",
+    connection {
+      type     = "ssh"
+      user     = "${var.root_user}"
+      password = "${var.root_password}"
+    }
+  }
+  provisioner "remote-exec" {
+    inline = [
+      "chmod +x /tmp/scripts/*.sh",
+      "/tmp/scripts/ssh_conf.sh",
+      "/tmp/scripts/authorized_keys.sh",
+      "rm -rf /tmp/scripts",
+      "passwd -d root",
+      "userdel -r centos"
+    ],
+    connection {
+      type     = "ssh"
+      user     = "${var.root_user}"
+      password = "${var.root_password}"
+    }
   }
 }

@@ -62,3 +62,11 @@ variable pnda_template_kafka {
   type = "string"
   default = "${VS_TEMPLATE_KAFKA}"
 }
+variable root_user {
+  type = "string"
+  default = "${TF_ROOT_USER}"
+}
+variable root_password {
+  type = "string"
+  default = "${TF_ROOT_PASSWORD}"
+}
